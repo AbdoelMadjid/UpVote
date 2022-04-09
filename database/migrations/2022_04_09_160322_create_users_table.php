@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('has_voted')->default(false);
             $table->boolean('is_present')->default(false);
             $table->foreignId('group_id')
+                ->nullable()
                 ->constrained('groups')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
