@@ -1,0 +1,40 @@
+version: '3.8'
+services:
+  dev-db:
+    image: mysql
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=upvote-dev
+      - MYSQL_USER=upvote-user
+      - MYSQL_PASSWORD=password
+    networks:
+      - upvote
+
+  test-db:
+    image: mysql
+    ports:
+      - 3308:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=upvote-test
+      - MYSQL_USER=upvote-user
+      - MYSQL_PASSWORD=password
+    networks:
+      - upvote
+
+  prod-db:
+    image: mysql
+    ports:
+      - 3309:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword
+      - MYSQL_DATABASE=upvote-prod
+      - MYSQL_USER=upvote-user
+      - MYSQL_PASSWORD=password
+    networks:
+      - upvote
+
+networks:
+  upvote:
