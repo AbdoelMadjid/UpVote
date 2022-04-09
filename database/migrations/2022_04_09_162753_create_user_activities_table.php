@@ -16,7 +16,8 @@ return new class extends Migration
         Schema::create('user_activities', function (Blueprint $table) {
             $table->id();
             $table->string('activity_description');
-            $table->string('user_agent');
+            $table->json('user_agent');
+            $table->ipAddress('ip_address');
             $table->foreignId('user_id')
                 ->constrained()
                 ->onUpdate('cascade')
