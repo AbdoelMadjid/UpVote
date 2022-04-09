@@ -19,6 +19,13 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->boolean('has_blacklisted')->default(false);
+            $table->boolean('has_voted')->default(false);
+            $table->boolean('is_present')->default(false);
+            $table->foreignId('group_id')
+                ->constrained('groups')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
         });
