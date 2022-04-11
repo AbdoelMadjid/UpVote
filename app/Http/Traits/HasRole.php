@@ -12,8 +12,8 @@ trait HasRole
      * @param \App\Models\Role $role
      * @return boolean
      */
-    public function hasRole(Role $role): bool
+    public function hasRole(int $role_id): bool
     {
-        return $this->role_id === $role;
+        return $this->role_id === $role_id;
     }
 }
