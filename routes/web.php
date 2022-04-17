@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CandidateController;
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Livewire\Auth\Login;
@@ -38,12 +39,21 @@ Route::get('password/reset/{token}', Reset::class)
     ->name('password.reset');
 
 Route::middleware('auth')->group(function () {
+
     Route::get('email/verify', Verify::class)
         ->middleware('throttle:6,1')
         ->name('verification.notice');
 
     Route::get('password/confirm', Confirm::class)
         ->name('password.confirm');
+});
+
+Route::middleware(['auth', 'role:admin'])->prefix('dashboard')->group(function () {
+    Route::get('/', function () {
+        return 'Admin dashboard home!';
+    });
+
+    Route::get('/candidates', [CandidateController::class, 'index']);
 });
 
 Route::middleware('auth')->group(function () {
